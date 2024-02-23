@@ -26,10 +26,10 @@ Sign up for the [OnlyAuth 2FA API](https://www.onlyauth.io/signup) to get your A
 ### Example
 
 ```python
-import onlyauth_api
-from onlyauth_api.models import operations
+import onlyauth
+from onlyauth.models import operations
 
-s = onlyauth_api.OnlyAuthAPI(
+s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_API_SECRET>",
 )
 
