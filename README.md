@@ -15,15 +15,12 @@ pip install onlyauth
 ```
 <!-- End SDK Installation [installation] -->
 
-<!-- Start SDK Example Usage [usage] -->
 
-<!-- Start SDK Installation [installation] -->
 ## Sign up for OnlyAuth 2FA API
 
 Sign up for the [OnlyAuth 2FA API](https://www.onlyauth.io/signup) to get your API credentials.
-<!-- End SDK Installation [installation] -->
 
-<!-- Start SDK Example Usage [usage] -->
+<!-- No Start SDK Example Usage [usage] -->
 ## SDK Example Usage
 
 ### Example
@@ -52,7 +49,7 @@ if res.object is not None:
     # handle response
     pass
 ```
-<!-- End SDK Example Usage [usage] -->
+<!-- No End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
