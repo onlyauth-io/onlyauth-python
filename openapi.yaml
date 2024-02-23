@@ -1,0 +1,577 @@
+openapi: 3.0.0
+info:
+  title: OnlyAuth API
+  version: 0.1.0
+servers:
+  - url: https://api.onlyauth.io
+paths:
+  /server/access-tokens/new:
+    post:
+      summary: Creates a short-lived JWT token to integrate the widget
+      operationId: createAccessToken
+      tags:
+        - Authentication
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - app_id
+                - client_id
+                - end_user_phone_number
+                - end_user_uuid
+                - redirect_uri
+                - language
+                - region
+              properties:
+                app_id:
+                  type: string
+                  description: Uuid of the OnlyAuth App (APPX-XXX)
+                client_id:
+                  type: string
+                  description: Uuid of you in the OnlyAuth Platform (CLNT-XXX)
+                end_user_phone_number:
+                  type: string
+                  description: Phone number of the end user (E164 format)
+                end_user_uuid:
+                  type: string
+                  description: Uuid of the end user (any type)
+                redirect_uri:
+                  type: string
+                  description: URL to redirect to after authentication
+                language:
+                  type: string
+                  description: Language code (e.g., en-US)
+                region:
+                  type: string
+                  description: Region code (us-1)
+      responses:
+        '200':
+          description: JWT token created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: The JWT token
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /server/success-tokens:
+    get:
+      summary: Validates a success token after user completes authentication
+      operationId: validateSuccessToken
+      tags:
+        - Authentication
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: Bearer token for authentication (your API Secret)
+        - in: query
+          name: app_id
+          required: true
+          schema:
+            type: string
+          description: Uuid of the OnlyAuth App (APPX-XXX)
+        - in: query
+          name: client_id
+          required: true
+          schema:
+            type: string
+          description: Uuid of you in the OnlyAuth Platform  (CLNT-XXX)
+        - in: query
+          name: token
+          required: true
+          schema:
+            type: string
+          description: The success token to be validated (TOKN-XXX)
+      responses:
+        '200':
+          description: Success token validated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: The validated success token (TOKN-XXX)
+                  end_user_uuid:
+                    type: string
+                    description: Supplied uuid of the end user
+                  end_user_phone_number:
+                    type: string
+                    description: Supplied phone number of the alleged end user
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Success token not found
+  /apps:
+    get:
+      operationId: getApps
+      summary: Get all apps
+      tags:
+        - Apps
+      parameters:
+        - description: Uuid of you in the OnlyAuth Platform (CLNT-XXX)
+          in: query
+          name: client_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of apps
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apps:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sandbox_mode: 
+                          type: boolean
+                          description: Indicates if the app is in sandbox mode
+                        allow_sms_channel:
+                          type: boolean
+                          description: Indicates if SMS channel is allowed for guests
+                        client_id:
+                          type: string
+                          description: Client identifier (CLNT-XXX)
+                        friendly_name:
+                          type: string
+                          description: Friendly name of the app
+                        icon:
+                          type: string
+                          description: URL to the app's icon
+                        allow_totp_channel:
+                          type: boolean
+                          description: Indicates if TOTP channel is allowed for guests
+                        enabled:
+                          type: integer
+                          description: Indicates if the app is enabled
+                        webauthn_redirect_allowed:
+                          type: boolean
+                          nullable: true
+                          description: Indicates if WebAuthn redirect is allowed when webauthn_enabled is set to true
+                        app_domain:
+                          type: string
+                          description: Domain of the app
+                        webauthn_enabled:
+                          type: boolean
+                          description: Indicates if WebAuthn is enabled
+                        id:
+                          type: string
+                          description: Uuid of the app (APPX-XXX)
+                        supported_factors:
+                          type: string
+                          description: Supported factors for the app
+                        webauth_enabled:
+                          type: boolean
+                          description: Indicates if WebAuth is enabled
+                          nullable: true
+                      required:
+                        - id
+                        - app_domain
+                        - icon
+                        - webauthn_enabled
+                        - enabled
+                        - allow_totp_channel
+                        - allow_sms_channel
+                        - sandbox_mode
+        '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+        '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: newApp
+      summary: Create a new app
+      tags:
+        - Apps
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                client_id:
+                  description: Client identifier
+                  type: string
+              type: object
+        required: true
+      responses:
+        '200':
+            description: App created successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    app:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          sandbox_mode: 
+                            type: boolean
+                            description: Indicates if the app is in sandbox mode
+                          allow_sms_channel:
+                            type: boolean
+                            description: Indicates if SMS channel is allowed for guests
+                          client_id:
+                            type: string
+                            description: Client identifier (CLNT-XXX)
+                          friendly_name:
+                            type: string
+                            description: Friendly name of the app
+                          icon:
+                            type: string
+                            description: URL to the app's icon
+                          allow_totp_channel:
+                            type: boolean
+                            description: Indicates if TOTP channel is allowed for guests
+                          enabled:
+                            type: integer
+                            description: Indicates if the app is enabled
+                          webauthn_redirect_allowed:
+                            type: boolean
+                            nullable: true
+                            description: Indicates if WebAuthn redirect is allowed when webauthn_enabled is set to true
+                          app_domain:
+                            type: string
+                            description: Domain of the app
+                          webauthn_enabled:
+                            type: boolean
+                            description: Indicates if WebAuthn is enabled
+                          id:
+                            type: string
+                            description: Uuid of the app (APPX-XXX)
+                          supported_factors:
+                            type: string
+                            description: Supported factors for the app
+                          webauth_enabled:
+                            type: boolean
+                            description: Indicates if WebAuth is enabled
+                            nullable: true
+                        required:
+                          - id
+                          - app_domain
+                          - icon
+                          - webauthn_enabled
+                          - enabled
+                          - allow_totp_channel
+                          - allow_sms_channel
+                          - sandbox_mode
+        '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+        '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+  /apps/{app_id}:
+    delete:
+      operationId: deleteApp
+      summary: Delete an app
+      tags:
+        - Apps
+      parameters:
+        - description: Unique identifier of the app to be deleted (APPX-XXX)
+          in: path
+          name: app_id
+          required: true
+          schema:
+            type: string
+        - description: Client identifier for authentication (CLNT-XXX)
+          in: query
+          name: client_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+            description: App deleted successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    app:
+                      type: object
+                examples: 
+                  appDeletedExample:
+                    value: 
+                      app: {}
+        '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+        '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: App not found
+    get:
+      operationId: getAppById
+      summary: Get an app by uuid
+      tags:
+        - Apps
+      parameters:
+        - description: Unique identifier of the app to be fetched (APPX-XXX)
+          in: path
+          name: app_id
+          required: true
+          schema:
+            type: string
+        - description: Client identifier for authentication (CLNT-XXX)
+          in: query
+          name: client_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: App object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  app:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sandbox_mode: 
+                          type: boolean
+                          description: Indicates if the app is in sandbox mode
+                        allow_sms_channel:
+                          type: boolean
+                          description: Indicates if SMS channel is allowed for guests
+                        client_id:
+                          type: string
+                          description: Client identifier (CLNT-XXX)
+                        friendly_name:
+                          type: string
+                          description: Friendly name of the app
+                        icon:
+                          type: string
+                          description: URL to the app's icon
+                        allow_totp_channel:
+                          type: boolean
+                          description: Indicates if TOTP channel is allowed for guests
+                        enabled:
+                          type: integer
+                          description: Indicates if the app is enabled
+                        webauthn_redirect_allowed:
+                          type: boolean
+                          nullable: true
+                          description: Indicates if WebAuthn redirect is allowed when webauthn_enabled is set to true
+                        app_domain:
+                          type: string
+                          description: Domain of the app
+                        webauthn_enabled:
+                          type: boolean
+                          description: Indicates if WebAuthn is enabled
+                        id:
+                          type: string
+                          description: Uuid of the app (APPX-XXX)
+                        supported_factors:
+                          type: string
+                          description: Supported factors for the app
+                        webauth_enabled:
+                          type: boolean
+                          description: Indicates if WebAuth is enabled
+                          nullable: true
+                      required:
+                        - id
+                        - app_domain
+                        - icon
+                        - webauthn_enabled
+                        - enabled
+                        - allow_totp_channel
+                        - allow_sms_channel
+                        - sandbox_mode
+        '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+        '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: App not found
+    post:
+      operationId: updateApp
+      summary: Update an app
+      tags:
+        - Apps
+      parameters:
+        - description: Unique identifier of the app to be updated (APPX-XXX)
+          in: path
+          name: app_id
+          required: true
+          schema:
+            type: string
+        - description: Client identifier for authentication (CLNT-XXX)
+          in: query
+          name: client_id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                client_id:
+                  description: Client identifier
+                  type: string
+                # Additional properties to be updated should be defined here based on the actual use case
+              type: object
+        required: true
+      responses:
+        '200':
+          description: App updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  app:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sandbox_mode: 
+                          type: boolean
+                          description: Indicates if the app is in sandbox mode
+                        allow_sms_channel:
+                          type: boolean
+                          description: Indicates if SMS channel is allowed for guests
+                        client_id:
+                          type: string
+                          description: Client identifier (CLNT-XXX)
+                        friendly_name:
+                          type: string
+                          description: Friendly name of the app
+                        icon:
+                          type: string
+                          description: URL to the app's icon
+                        allow_totp_channel:
+                          type: boolean
+                          description: Indicates if TOTP channel is allowed for guests
+                        enabled:
+                          type: integer
+                          description: Indicates if the app is enabled
+                        webauthn_redirect_allowed:
+                          type: boolean
+                          nullable: true
+                          description: Indicates if WebAuthn redirect is allowed when webauthn_enabled is set to true
+                        app_domain:
+                          type: string
+                          description: Domain of the app
+                        webauthn_enabled:
+                          type: boolean
+                          description: Indicates if WebAuthn is enabled
+                        id:
+                          type: string
+                          description: Uuid of the app (APPX-XXX)
+                        supported_factors:
+                          type: string
+                          description: Supported factors for the app
+                        webauth_enabled:
+                          type: boolean
+                          description: Indicates if WebAuth is enabled
+                          nullable: true
+                      required:
+                        - id
+                        - app_domain
+                        - icon
+                        - webauthn_enabled
+                        - enabled
+                        - allow_totp_channel
+                        - allow_sms_channel
+                        - sandbox_mode
+        '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+        '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: App not found
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: 'API Secret'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message indicating the reason for failure
