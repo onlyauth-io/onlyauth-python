@@ -10,7 +10,7 @@ except FileNotFoundError:
 
 setuptools.setup(
     name="onlyauth",
-    version="0.0.1",
+    version="0.0.2",
     author="OnlyAuth",
     description="OnlyAuth Python Library",
     long_description=long_description,

@@ -81,21 +81,21 @@ Handling errors in this SDK should largely match your expectations.  All operati
 ### Example
 
 ```python
-import onlyauth_api
-from onlyauth_api.models import errors, operations
+import onlyauth
+from onlyauth.models import errors, operations
 
-s = onlyauth_api.OnlyAuthAPI(
-    bearer_auth="<YOUR_API_SECRET>",
+s = onlyauth.Onlyauth(
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.CreateAccessTokenRequestBody(
-    app_id='<APPX-XXX>',
-    client_id='<CLNT-XXX>',
-    end_user_phone_number='<+14151002000>',
-    end_user_uuid='<12345>',
-    redirect_uri='<https://www.example.com>',
-    language='<en-US>',
-    region='<us-1>',
+    app_id='<value>',
+    client_id='<value>',
+    end_user_phone_number='<value>',
+    end_user_uuid='<value>',
+    redirect_uri='<value>',
+    language='<value>',
+    region='<value>',
 )
 
 res = None
@@ -128,12 +128,12 @@ You can override the default server globally by passing a server index to the `s
 #### Example
 
 ```python
-import onlyauth_api
-from onlyauth_api.models import operations
+import onlyauth
+from onlyauth.models import operations
 
-s = onlyauth_api.OnlyAuthAPI(
+s = onlyauth.Onlyauth(
     server_idx=0,
-    bearer_auth="<YOUR_API_SECRET>",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.CreateAccessTokenRequestBody(
@@ -158,12 +158,12 @@ if res.object is not None:
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
-import onlyauth_api
-from onlyauth_api.models import operations
+import onlyauth
+from onlyauth.models import operations
 
-s = onlyauth_api.OnlyAuthAPI(
+s = onlyauth.Onlyauth(
     server_url="https://api.onlyauth.io",
-    bearer_auth="<YOUR_API_SECRET>",
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.CreateAccessTokenRequestBody(
@@ -191,12 +191,12 @@ The Python SDK makes API calls using the [requests](https://pypi.org/project/req
 
 For example, you could specify a header for every request that this sdk makes as follows:
 ```python
-import onlyauth_api
+import onlyauth
 import requests
 
 http_client = requests.Session()
 http_client.headers.update({'x-custom-header': 'someValue'})
-s = onlyauth_api.OnlyAuthAPI(client: http_client)
+s = onlyauth.Onlyauth(client: http_client)
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -213,11 +213,11 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `bearer_auth` parameter must be set when initializing the SDK client instance. For example:
 ```python
-import onlyauth_api
-from onlyauth_api.models import operations
+import onlyauth
+from onlyauth.models import operations
 
-s = onlyauth_api.OnlyAuthAPI(
-    bearer_auth="<YOUR_API_SECRET>",
+s = onlyauth.Onlyauth(
+    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
 req = operations.CreateAccessTokenRequestBody(
@@ -251,4 +251,11 @@ looking for the latest version.
 
 While we value open-source contributions to this SDK, this library is generated programmatically.
 Feel free to open a PR or a Github issue as a proof of concept and we'll do our best to include it in a future release!
+
+
+<!-- No SDK Installation -->
+<!-- No SDK Example Usage -->
+<!-- No SDK Available Operations -->
+<!-- Placeholder for Future Speakeasy SDK Sections -->
+
 
