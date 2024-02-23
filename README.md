@@ -1,20 +1,11 @@
-# onlyauth
+# OnlyAuth Python Library
 
 <div align="left">
-    <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
     <a href="https://opensource.org/licenses/MIT">
         <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
     </a>
 </div>
 
-
-## 🏗 **Welcome to your new SDK!** 🏗
-
-It has been generated successfully based on your OpenAPI spec. However, it is not yet ready for production use. Here are some next steps:
-- [ ] 🛠 Make your SDK feel handcrafted by [customizing it](https://www.speakeasyapi.dev/docs/customize-sdks)
-- [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
-- [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/productionize-sdks/publish-sdks)
-- [ ] ✨ When ready to productionize, delete this section from the README
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
@@ -25,26 +16,34 @@ pip install onlyauth
 <!-- End SDK Installation [installation] -->
 
 <!-- Start SDK Example Usage [usage] -->
+
+<!-- Start SDK Installation [installation] -->
+## Sign up for OnlyAuth 2FA API
+
+Sign up for the [OnlyAuth 2FA API](https://www.onlyauth.io/signup) to get your API credentials.
+<!-- End SDK Installation [installation] -->
+
+<!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
 
 ### Example
 
 ```python
-import onlyauth
-from onlyauth.models import operations
+import onlyauth_api
+from onlyauth_api.models import operations
 
-s = onlyauth.Onlyauth(
-    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
+s = onlyauth_api.OnlyAuthAPI(
+    bearer_auth="<YOUR_API_SECRET>",
 )
 
 req = operations.CreateAccessTokenRequestBody(
-    app_id='<value>',
-    client_id='<value>',
-    end_user_phone_number='<value>',
-    end_user_uuid='<value>',
-    redirect_uri='<value>',
-    language='<value>',
-    region='<value>',
+    app_id='<APPX-XXX>',
+    client_id='<CLNT-XXX>',
+    end_user_phone_number='<+14151002000>',
+    end_user_uuid='<12345>',
+    redirect_uri='<https://www.example.com>',
+    language='<en-US>',
+    region='<us-1>',
 )
 
 res = s.authentication.create_access_token(req)
@@ -85,21 +84,21 @@ Handling errors in this SDK should largely match your expectations.  All operati
 ### Example
 
 ```python
-import onlyauth
-from onlyauth.models import errors, operations
+import onlyauth_api
+from onlyauth_api.models import errors, operations
 
-s = onlyauth.Onlyauth(
-    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
+s = onlyauth_api.OnlyAuthAPI(
+    bearer_auth="<YOUR_API_SECRET>",
 )
 
 req = operations.CreateAccessTokenRequestBody(
-    app_id='<value>',
-    client_id='<value>',
-    end_user_phone_number='<value>',
-    end_user_uuid='<value>',
-    redirect_uri='<value>',
-    language='<value>',
-    region='<value>',
+    app_id='<APPX-XXX>',
+    client_id='<CLNT-XXX>',
+    end_user_phone_number='<+14151002000>',
+    end_user_uuid='<12345>',
+    redirect_uri='<https://www.example.com>',
+    language='<en-US>',
+    region='<us-1>',
 )
 
 res = None
@@ -132,12 +131,12 @@ You can override the default server globally by passing a server index to the `s
 #### Example
 
 ```python
-import onlyauth
-from onlyauth.models import operations
+import onlyauth_api
+from onlyauth_api.models import operations
 
-s = onlyauth.Onlyauth(
+s = onlyauth_api.OnlyAuthAPI(
     server_idx=0,
-    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
+    bearer_auth="<YOUR_API_SECRET>",
 )
 
 req = operations.CreateAccessTokenRequestBody(
@@ -162,12 +161,12 @@ if res.object is not None:
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
-import onlyauth
-from onlyauth.models import operations
+import onlyauth_api
+from onlyauth_api.models import operations
 
-s = onlyauth.Onlyauth(
+s = onlyauth_api.OnlyAuthAPI(
     server_url="https://api.onlyauth.io",
-    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
+    bearer_auth="<YOUR_API_SECRET>",
 )
 
 req = operations.CreateAccessTokenRequestBody(
@@ -195,12 +194,12 @@ The Python SDK makes API calls using the [requests](https://pypi.org/project/req
 
 For example, you could specify a header for every request that this sdk makes as follows:
 ```python
-import onlyauth
+import onlyauth_api
 import requests
 
 http_client = requests.Session()
 http_client.headers.update({'x-custom-header': 'someValue'})
-s = onlyauth.Onlyauth(client: http_client)
+s = onlyauth_api.OnlyAuthAPI(client: http_client)
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -217,11 +216,11 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `bearer_auth` parameter must be set when initializing the SDK client instance. For example:
 ```python
-import onlyauth
-from onlyauth.models import operations
+import onlyauth_api
+from onlyauth_api.models import operations
 
-s = onlyauth.Onlyauth(
-    bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
+s = onlyauth_api.OnlyAuthAPI(
+    bearer_auth="<YOUR_API_SECRET>",
 )
 
 req = operations.CreateAccessTokenRequestBody(
@@ -242,7 +241,6 @@ if res.object is not None:
 ```
 <!-- End Authentication [security] -->
 
-<!-- Placeholder for Future Speakeasy SDK Sections -->
 
 # Development
 
@@ -257,4 +255,3 @@ looking for the latest version.
 While we value open-source contributions to this SDK, this library is generated programmatically.
 Feel free to open a PR or a Github issue as a proof of concept and we'll do our best to include it in a future release!
 
-### SDK Created by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)
