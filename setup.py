@@ -10,7 +10,7 @@ except FileNotFoundError:
 
 setuptools.setup(
     name="onlyauth",
-    version="0.0.3",
+    version="0.0.4",
     author="OnlyAuth",
     description="OnlyAuth Python Library to quickly and easily add 2FA to your website/app",
     keywords="2fa,mfa,two factor auth,2fa api",
