@@ -18,7 +18,7 @@ pip install onlyauth
 
 ## Sign up for OnlyAuth 2FA API
 
-Sign up for the [OnlyAuth 2FA API](https://www.onlyauth.io/signup) to get your API credentials.
+Sign up for the [OnlyAuth 2FA API](https://app.onlyauth.io) to get your API credentials.
 
 <!-- No Start SDK Example Usage [usage] -->
 ## SDK Example Usage
@@ -255,7 +255,6 @@ Feel free to open a PR or a Github issue as a proof of concept and we'll do our 
 
 <!-- No SDK Installation -->
 <!-- No SDK Example Usage -->
-<!-- No SDK Available Operations -->
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
 
