@@ -24,6 +24,7 @@ jobs:
       openapi_docs: |
         - ./openapi.yaml
       publish_python: true
+      create_release: true
       speakeasy_version: latest
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
