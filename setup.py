@@ -14,8 +14,10 @@ setuptools.setup(
     author="OnlyAuth",
     description="OnlyAuth Python Library to quickly and easily add 2FA to your website/app",
     keywords="2fa,mfa,two factor auth,2fa api",
-    home_page="https://www.onlyauth.io",
-    project_url="https://github.com/onlyauth-io/onlyauth-python",
+    url="https://www.onlyauth.io", 
+    project_urls={
+        "Source": "https://github.com/onlyauth-io/onlyauth-python",
+    },
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(where="src"),
