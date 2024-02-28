@@ -9,8 +9,10 @@ generation:
     nameResolutionDec2023: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
 python:
-  version: 0.0.2
+  version: 0.0.3
   author: OnlyAuth
   clientServerStatusCodesAsErrors: true
   description: OnlyAuth Python Library

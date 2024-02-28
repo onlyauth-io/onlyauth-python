@@ -1,21 +1,21 @@
 lockVersion: 2.0.0
 id: 53f7af90-29d0-4d5a-b54b-5a081bc9afcd
 management:
-  docChecksum: 9dd757495155f7e910bee9d1027cac01
-  docVersion: 0.1.1
+  docChecksum: 02d38bf8412747daa27991dee395436d
+  docVersion: 0.1.2
   speakeasyVersion: internal
-  generationVersion: 2.269.0
-  releaseVersion: 0.0.2
-  configChecksum: 4837cb5ed3e4f069b5842005c929ea50
+  generationVersion: 2.272.7
+  releaseVersion: 0.0.3
+  configChecksum: 73baa03603a6e8650372531c6b16a38d
   repoURL: https://github.com/onlyauth-io/onlyauth-python.git
   repoSubDirectory: .
   installationURL: https://github.com/onlyauth-io/onlyauth-python.git
   published: true
 features:
   python:
-    core: 4.4.6
+    core: 4.4.7
     flattening: 2.81.1
-    globalSecurity: 2.83.2
+    globalSecurity: 2.83.4
     globalServerURLs: 2.82.1
 generatedFiles:
   - src/onlyauth/sdkconfiguration.py
@@ -23,7 +23,6 @@ generatedFiles:
   - src/onlyauth/apps.py
   - src/onlyauth/sdk.py
   - pylintrc
-  - setup.py
   - src/onlyauth/__init__.py
   - src/onlyauth/utils/__init__.py
   - src/onlyauth/utils/retries.py
@@ -72,5 +71,8 @@ generatedFiles:
   - docs/models/operations/updateappresponse.md
   - docs/models/errors/errorresponse.md
   - docs/models/components/security.md
+  - docs/sdks/onlyauth/README.md
+  - docs/sdks/authentication/README.md
+  - docs/sdks/apps/README.md
   - USAGE.md
   - .gitattributes
