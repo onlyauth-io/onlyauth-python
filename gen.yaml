@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 python:
-  version: 0.1.0
+  version: 0.2.0
   additionalDependencies:
     dependencies: {}
     extraDependencies:
@@ -33,3 +33,4 @@ python:
   maxMethodParams: 4
   outputModelSuffix: output
   packageName: onlyauth
+  responseFormat: envelope

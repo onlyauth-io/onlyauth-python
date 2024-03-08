@@ -28,6 +28,7 @@ res = s.apps.get_apps(client_id='<value>')
 if res.object is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -68,6 +69,7 @@ res = s.apps.new_app(req)
 if res.object is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -106,6 +108,7 @@ res = s.apps.delete_app(app_id='<value>', client_id='<value>')
 if res.object is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -145,6 +148,7 @@ res = s.apps.get_app_by_id(app_id='<value>', client_id='<value>')
 if res.object is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -185,6 +189,7 @@ res = s.apps.update_app(app_id='<value>', client_id='<value>', request_body=oper
 if res.object is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

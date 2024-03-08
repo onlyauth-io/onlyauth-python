@@ -35,6 +35,7 @@ res = s.authentication.create_access_token(req)
 if res.object is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -73,6 +74,7 @@ res = s.authentication.validate_success_token(app_id='<value>', client_id='<valu
 if res.object is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

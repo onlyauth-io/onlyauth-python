@@ -22,5 +22,6 @@ res = s.authentication.create_access_token(req)
 if res.object is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
