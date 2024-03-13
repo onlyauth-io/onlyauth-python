@@ -17,14 +17,14 @@ class Onlyauth:
 
     def __init__(self,
                  bearer_auth: Union[Optional[str], Callable[[], Optional[str]]] = None,
-                 server_idx: int = None,
-                 server_url: str = None,
-                 url_params: Dict[str, str] = None,
-                 client: requests_http.Session = None,
-                 retry_config: utils.RetryConfig = None
+                 server_idx: Optional[int] = None,
+                 server_url: Optional[str] = None,
+                 url_params: Optional[Dict[str, str]] = None,
+                 client: Optional[requests_http.Session] = None,
+                 retry_config: Optional[utils.RetryConfig] = None
                  ) -> None:
         """Instantiates the SDK configuring it with the provided parameters.
-        
+
         :param bearer_auth: The bearer_auth required for authentication
         :type bearer_auth: Union[Optional[str], Callable[[], Optional[str]]]
         :param server_idx: The index of the server to use for all operations
@@ -40,18 +40,24 @@ class Onlyauth:
         """
         if client is None:
             client = requests_http.Session()
-        
+
         if callable(bearer_auth):
             def security():
                 return components.Security(bearer_auth = bearer_auth())
         else:
             security = components.Security(bearer_auth = bearer_auth)
-        
+
         if server_url is not None:
             if url_params is not None:
                 server_url = utils.template_url(server_url, url_params)
 
-        self.sdk_configuration = SDKConfiguration(client, security, server_url, server_idx, retry_config=retry_config)
+        self.sdk_configuration = SDKConfiguration(
+            client,
+            security,
+            server_url,
+            server_idx,
+            retry_config=retry_config
+        )
 
         hooks = SDKHooks()
 
@@ -61,11 +67,11 @@ class Onlyauth:
             self.sdk_configuration.server_url = server_url
 
         # pylint: disable=protected-access
-        self.sdk_configuration._hooks=hooks
-       
+        self.sdk_configuration._hooks = hooks
+
         self._init_sdks()
-    
+
+
     def _init_sdks(self):
         self.authentication = Authentication(self.sdk_configuration)
         self.apps = Apps(self.sdk_configuration)
-    
