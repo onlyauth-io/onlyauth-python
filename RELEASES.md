@@ -57,3 +57,13 @@ Based on:
 - [python v0.2.1] .
 ### Releases
 - [PyPI v0.2.1] https://pypi.org/project/onlyauth/0.2.1 - .
+
+## 2024-03-27 01:08:24
+### Changes
+Based on:
+- OpenAPI Doc 0.1.2 
+- Speakeasy CLI 1.227.0 (2.291.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v0.2.2] .
+### Releases
+- [PyPI v0.2.2] https://pypi.org/project/onlyauth/0.2.2 - .
