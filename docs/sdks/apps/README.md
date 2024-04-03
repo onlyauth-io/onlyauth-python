@@ -46,7 +46,7 @@ if res.object is not None:
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400,401              | application/json     |
-| errors.SDKError      | 4x-5xx               | */*                  |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## new_app
 
@@ -87,7 +87,7 @@ if res.object is not None:
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400,401              | application/json     |
-| errors.SDKError      | 4x-5xx               | */*                  |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## delete_app
 
@@ -127,7 +127,7 @@ if res.object is not None:
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400,401              | application/json     |
-| errors.SDKError      | 4x-5xx               | */*                  |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## get_app_by_id
 
@@ -167,7 +167,7 @@ if res.object is not None:
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400,401              | application/json     |
-| errors.SDKError      | 4x-5xx               | */*                  |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## update_app
 
@@ -209,4 +209,4 @@ if res.object is not None:
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400,401              | application/json     |
-| errors.SDKError      | 4x-5xx               | */*                  |
+| errors.SDKError      | 4xx-5xx              | */*                  |

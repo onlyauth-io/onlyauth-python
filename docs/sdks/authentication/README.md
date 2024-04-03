@@ -53,7 +53,7 @@ if res.object is not None:
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400,401              | application/json     |
-| errors.SDKError      | 4x-5xx               | */*                  |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## validate_success_token
 
@@ -94,4 +94,4 @@ if res.object is not None:
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400,401              | application/json     |
-| errors.SDKError      | 4x-5xx               | */*                  |
+| errors.SDKError      | 4xx-5xx              | */*                  |
