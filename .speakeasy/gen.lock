@@ -3,17 +3,17 @@ id: 53f7af90-29d0-4d5a-b54b-5a081bc9afcd
 management:
   docChecksum: 02d38bf8412747daa27991dee395436d
   docVersion: 0.1.2
-  speakeasyVersion: 1.235.0
-  generationVersion: 2.298.0
-  releaseVersion: 0.3.0
-  configChecksum: 4b5b0db21ecf16a1eaee89370014d4b6
+  speakeasyVersion: 1.241.0
+  generationVersion: 2.300.0
+  releaseVersion: 0.3.1
+  configChecksum: 82010087e3297e3d7314faa5478a3863
   repoURL: https://github.com/onlyauth-io/onlyauth-python.git
   repoSubDirectory: .
   installationURL: https://github.com/onlyauth-io/onlyauth-python.git
   published: true
 features:
   python:
-    core: 4.6.0
+    core: 4.6.3
     flattening: 2.81.1
     globalSecurity: 2.83.5
     globalServerURLs: 2.82.2
