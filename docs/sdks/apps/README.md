@@ -22,7 +22,6 @@ s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
-
 res = s.apps.get_apps(client_id='<value>')
 
 if res.object is not None:
@@ -62,9 +61,7 @@ s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
-req = operations.NewAppRequestBody()
-
-res = s.apps.new_app(req)
+res = s.apps.new_app(request=operations.NewAppRequestBody())
 
 if res.object is not None:
     # handle response
@@ -101,7 +98,6 @@ import onlyauth
 s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
-
 
 res = s.apps.delete_app(app_id='<value>', client_id='<value>')
 
@@ -142,7 +138,6 @@ s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
-
 res = s.apps.get_app_by_id(app_id='<value>', client_id='<value>')
 
 if res.object is not None:
@@ -182,7 +177,6 @@ from onlyauth.models import operations
 s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
-
 
 res = s.apps.update_app(app_id='<value>', client_id='<value>', request_body=operations.UpdateAppRequestBody())
 

@@ -88,7 +88,9 @@ s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
-req = operations.CreateAccessTokenRequestBody(
+res = None
+try:
+    res = s.authentication.create_access_token(request=operations.CreateAccessTokenRequestBody(
     app_id='<value>',
     client_id='<value>',
     end_user_phone_number='<value>',
@@ -96,11 +98,7 @@ req = operations.CreateAccessTokenRequestBody(
     redirect_uri='<value>',
     language='<value>',
     region='<value>',
-)
-
-res = None
-try:
-    res = s.authentication.create_access_token(req)
+))
 except errors.ErrorResponse as e:
     # handle exception
     raise(e)
@@ -137,7 +135,7 @@ s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
-req = operations.CreateAccessTokenRequestBody(
+res = s.authentication.create_access_token(request=operations.CreateAccessTokenRequestBody(
     app_id='<value>',
     client_id='<value>',
     end_user_phone_number='<value>',
@@ -145,9 +143,7 @@ req = operations.CreateAccessTokenRequestBody(
     redirect_uri='<value>',
     language='<value>',
     region='<value>',
-)
-
-res = s.authentication.create_access_token(req)
+))
 
 if res.object is not None:
     # handle response
@@ -168,7 +164,7 @@ s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
-req = operations.CreateAccessTokenRequestBody(
+res = s.authentication.create_access_token(request=operations.CreateAccessTokenRequestBody(
     app_id='<value>',
     client_id='<value>',
     end_user_phone_number='<value>',
@@ -176,9 +172,7 @@ req = operations.CreateAccessTokenRequestBody(
     redirect_uri='<value>',
     language='<value>',
     region='<value>',
-)
-
-res = s.authentication.create_access_token(req)
+))
 
 if res.object is not None:
     # handle response
@@ -223,7 +217,7 @@ s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
-req = operations.CreateAccessTokenRequestBody(
+res = s.authentication.create_access_token(request=operations.CreateAccessTokenRequestBody(
     app_id='<value>',
     client_id='<value>',
     end_user_phone_number='<value>',
@@ -231,9 +225,7 @@ req = operations.CreateAccessTokenRequestBody(
     redirect_uri='<value>',
     language='<value>',
     region='<value>',
-)
-
-res = s.authentication.create_access_token(req)
+))
 
 if res.object is not None:
     # handle response
