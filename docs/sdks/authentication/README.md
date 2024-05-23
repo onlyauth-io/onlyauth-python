@@ -20,6 +20,7 @@ s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
+
 res = s.authentication.create_access_token(request=operations.CreateAccessTokenRequestBody(
     app_id='<value>',
     client_id='<value>',
@@ -65,6 +66,7 @@ import onlyauth
 s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
+
 
 res = s.authentication.validate_success_token(app_id='<value>', client_id='<value>', token='<value>')
 

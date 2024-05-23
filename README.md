@@ -99,6 +99,7 @@ try:
     language='<value>',
     region='<value>',
 ))
+
 except errors.ErrorResponse as e:
     # handle exception
     raise(e)
@@ -135,6 +136,7 @@ s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
 
+
 res = s.authentication.create_access_token(request=operations.CreateAccessTokenRequestBody(
     app_id='<value>',
     client_id='<value>',
@@ -163,6 +165,7 @@ s = onlyauth.Onlyauth(
     server_url="https://api.onlyauth.io",
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
+
 
 res = s.authentication.create_access_token(request=operations.CreateAccessTokenRequestBody(
     app_id='<value>',
@@ -216,6 +219,7 @@ from onlyauth.models import operations
 s = onlyauth.Onlyauth(
     bearer_auth="<YOUR_BEARER_TOKEN_HERE>",
 )
+
 
 res = s.authentication.create_access_token(request=operations.CreateAccessTokenRequestBody(
     app_id='<value>',
