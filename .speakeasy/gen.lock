@@ -3,10 +3,10 @@ id: 53f7af90-29d0-4d5a-b54b-5a081bc9afcd
 management:
   docChecksum: 02d38bf8412747daa27991dee395436d
   docVersion: 0.1.2
-  speakeasyVersion: 1.295.1
-  generationVersion: 2.335.5
-  releaseVersion: 0.4.1
-  configChecksum: ca92125a7588fe81860b3bc665f9f61f
+  speakeasyVersion: 1.308.0
+  generationVersion: 2.342.2
+  releaseVersion: 0.4.2
+  configChecksum: 20191d1fb206164c53455bbd4c10b2cb
   repoURL: https://github.com/onlyauth-io/onlyauth-python.git
   repoSubDirectory: .
   installationURL: https://github.com/onlyauth-io/onlyauth-python.git
@@ -14,7 +14,7 @@ management:
 features:
   python:
     additionalDependencies: 0.1.0
-    core: 4.6.8
+    core: 4.6.10
     flattening: 2.81.1
     globalSecurity: 2.83.5
     globalSecurityCallbacks: 0.1.0
@@ -28,8 +28,10 @@ generatedFiles:
   - src/onlyauth/authentication.py
   - src/onlyauth/apps.py
   - src/onlyauth/sdk.py
+  - Makefile
   - py.typed
   - pylintrc
+  - scripts/publish.sh
   - src/onlyauth/__init__.py
   - src/onlyauth/utils/__init__.py
   - src/onlyauth/utils/retries.py
