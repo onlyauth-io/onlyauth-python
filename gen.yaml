@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 python:
-  version: 0.4.2
+  version: 0.4.3
   additionalDependencies:
     dependencies: {}
     extraDependencies:
@@ -36,3 +36,4 @@ python:
   packageName: onlyauth
   projectUrls: {}
   responseFormat: envelope
+  templateVersion: v1
